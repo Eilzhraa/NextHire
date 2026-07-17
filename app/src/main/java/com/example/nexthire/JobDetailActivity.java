@@ -73,7 +73,6 @@ public class JobDetailActivity extends AppCompatActivity {
             popup.show();
         });
 
-        // ✅ WHATSAPP - DENGAN TEMPLATE
         btnWA.setOnClickListener(v -> {
             String phoneNumber = selectedJob.getPhone();
             String jobTitle = selectedJob.getJobTitle();
@@ -91,7 +90,6 @@ public class JobDetailActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // ✅ EMAIL - DENGAN TEMPLATE (TAK BLANK)
         btnEmail.setOnClickListener(v -> {
             String subject = "Job Application Inquiry - " + selectedJob.getJobTitle();
             String body = "Dear Hiring Manager,\n\n" +
@@ -101,8 +99,7 @@ public class JobDetailActivity extends AppCompatActivity {
                     "I look forward to hearing from you.\n\n" +
                     "Best regards,\n" +
                     currentUserName;
-            // Many email apps (Gmail included) ignore EXTRA_SUBJECT/EXTRA_TEXT with ACTION_SENDTO
-            // and only read what's inside the mailto: URI itself — so we build it as a query string.
+
             String uriString = "mailto:" + Uri.encode(selectedJob.getEmail())
                     + "?subject=" + Uri.encode(subject)
                     + "&body=" + Uri.encode(body);
@@ -123,7 +120,6 @@ public class JobDetailActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // ✅ APPLY JOB - TOAST (BUKAN NOTIFICATION)
         btnApply.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Are you sure to apply now?");
@@ -151,12 +147,6 @@ public class JobDetailActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Checks whether the current user has already saved this exact job
-     * (matched by username + jobTitle + companyName) before writing a new
-     * entry to Firebase. Prevents duplicate "Save Job" taps from creating
-     * multiple copies of the same saved job.
-     */
     private void checkIfAlreadySavedThenSave() {
         DatabaseReference dbSaved = FirebaseDatabase.getInstance().getReference("SavedJobs");
 

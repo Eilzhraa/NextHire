@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         tvGoToRegister = findViewById(R.id.tvGoToRegister);
 
-        // 👇 If a user is already logged in (e.g. app reopened), skip straight to dashboard
         if (mAuth.getCurrentUser() != null) {
             goToDashboard();
             return;
@@ -71,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void goToDashboard() {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
-        // Clears LoginActivity/RegisterActivity off the back stack so back button doesn't return to login
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         finish();

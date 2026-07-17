@@ -23,7 +23,7 @@ public class JobAdapter extends ArrayAdapter<Job> {
     private Context context;
     private List<Job> jobList;
     private String currentUserName;
-    private HashMap<String, String> savedJobsMap; // key -> firebase saveId, kept in sync by MainActivity
+    private HashMap<String, String> savedJobsMap;
 
     public JobAdapter(@NonNull Context context, List<Job> jobList, String userName, HashMap<String, String> savedJobsMap) {
         super(context, R.layout.job_item, jobList);
@@ -33,10 +33,7 @@ public class JobAdapter extends ArrayAdapter<Job> {
         this.savedJobsMap = savedJobsMap;
     }
 
-    /**
-     * Builds a consistent lookup key so saving, checking, and removing
-     * all agree on identity for the same user + job combo.
-     */
+
     public static String buildSaveKey(String username, String jobTitle, String companyName) {
         if (username == null) username = "";
         if (jobTitle == null) jobTitle = "";

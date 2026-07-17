@@ -9,8 +9,8 @@ import java.io.InputStream;
 
 public class CloudinaryUploader {
 
-    private static final String CLOUD_NAME = "zfuq164c";       // from Cloudinary Dashboard
-    private static final String UPLOAD_PRESET = "nexthire_unsigned";  // from Upload preset step
+    private static final String CLOUD_NAME = "zfuq164c";
+    private static final String UPLOAD_PRESET = "nexthire_unsigned";
 
     public interface UploadCallback {
         void onSuccess(String imageUrl);

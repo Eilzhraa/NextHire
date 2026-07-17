@@ -42,16 +42,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private double lng;
     private String companyName;
 
-    // Kod request untuk location permission
+
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
 
-    // ✅ TAMBAH: GPS client
+
     private FusedLocationProviderClient fusedLocationClient;
     private LatLng currentLatLng;
 
-    // ✅ TAMBAH: API Key
+
     private static final String API_KEY = BuildConfig.MAPS_API_KEY;
-    // ✅ TAMBAH: List untuk markers nearby
     private List<Marker> nearbyMarkers = new ArrayList<>();
 
     @Override
@@ -70,10 +69,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mapFragment.getMapAsync(this);
         }
 
-        // ✅ TAMBAH: Initialize GPS client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // ✅ TAMBAH: Bind buttons
         Button btnLRT = findViewById(R.id.btnLRT);
         Button btnBus = findViewById(R.id.btnBus);
         Button btnParking = findViewById(R.id.btnParking);
@@ -87,7 +84,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Marker untuk lokasi syarikat (SEDIA ADA - TAK DIUBAH)
         LatLng companyLatLng = new LatLng(lat, lng);
         mMap.addMarker(new MarkerOptions()
                 .position(companyLatLng)
@@ -98,7 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
         enableMyLocation();
-        getCurrentLocation(); // ✅ TAMBAH: Dapatkan lokasi user
+        getCurrentLocation();
     }
 
     private void enableMyLocation() {
@@ -115,7 +111,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    // ✅ TAMBAH: Dapatkan lokasi semasa pengguna
     private void getCurrentLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -127,7 +122,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (location != null) {
                 currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-                // Tunjuk marker "You are here" (biru)
                 mMap.addMarker(new MarkerOptions()
                         .position(currentLatLng)
                         .title("📍 You are here")
@@ -139,18 +133,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    // ✅ TAMBAH: Search Nearby Places guna Google Places API
     private void searchNearby(String keyword) {
-        // Guna location company, bukan user
         LatLng companyLocation = new LatLng(lat, lng);
 
-        // Clear previous markers
         for (Marker marker : nearbyMarkers) {
             marker.remove();
         }
         nearbyMarkers.clear();
 
-        // Search based on COMPANY location
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
                 "?location=" + companyLocation.latitude + "," + companyLocation.longitude +
                 "&radius=2000" +
@@ -216,7 +206,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     try {
                         mMap.setMyLocationEnabled(true);
                         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-                        getCurrentLocation(); // ✅ TAMBAH: Ambil location lepas dapat permission
+                        getCurrentLocation();
                     } catch (SecurityException e) {
                         e.printStackTrace();
                     }

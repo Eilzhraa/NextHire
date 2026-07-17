@@ -17,7 +17,6 @@
             android:orientation="vertical"
             android:paddingBottom="32dp">
 
-            <!-- ===== HEADER / BANNER ===== -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
@@ -49,7 +48,6 @@
                     android:textColor="@android:color/white"
                     android:textSize="12sp" />
 
-                <!-- Profile picture, overlapping the banner bottom edge -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="112dp"
                     android:layout_height="112dp"
@@ -70,7 +68,6 @@
 
             </FrameLayout>
 
-            <!-- ===== NAME ===== -->
             <TextView
                 android:id="@+id/profile_user_name"
                 android:layout_width="wrap_content"
@@ -82,7 +79,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <!-- ===== INCOMPLETE PROFILE WARNING ===== -->
             <LinearLayout
                 android:id="@+id/layout_incomplete_warning"
                 android:layout_width="match_parent"
@@ -113,7 +109,6 @@
 
             </LinearLayout>
 
-            <!-- ===== DETAILS CARD ===== -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,7 +176,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- ===== EDIT PROFILE BUTTON ===== -->
             <Button
                 android:id="@+id/btn_edit_profile"
                 android:layout_width="match_parent"
@@ -194,7 +188,6 @@
                 android:backgroundTint="#2F6FED"
                 app:cornerRadius="14dp" />
 
-            <!-- ===== SAVED JOBS SECTION ===== -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -225,7 +218,6 @@
                 android:divider="@null"
                 android:dividerHeight="0dp" />
 
-            <!-- ===== SIGN OUT ===== -->
             <Button
                 android:id="@+id/btn_sign_out"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"

@@ -86,17 +86,14 @@ public class EditProfileActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btn_save_profile);
         btnCancel = findViewById(R.id.btn_cancel_edit);
 
-        // Setup Gender Spinner
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genderOptions);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(genderAdapter);
 
-        // Setup Education Spinner
         ArrayAdapter<String> educationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, educationOptions);
         educationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerEducation.setAdapter(educationAdapter);
 
-        // Get data from intent
         gender = getIntent().getStringExtra("USER_GENDER");
         birthday = getIntent().getStringExtra("USER_BIRTHDAY");
         university = getIntent().getStringExtra("USER_UNIVERSITY");
@@ -106,7 +103,6 @@ public class EditProfileActivity extends AppCompatActivity {
         hardSkills = getIntent().getStringExtra("USER_HARD_SKILLS");
         softSkills = getIntent().getStringExtra("USER_SOFT_SKILLS");
 
-        // Set existing values to spinners
         if (gender != null && !gender.equals("Not Specified")) {
             int position = getIndex(genderOptions, gender);
             if (position != -1) spinnerGender.setSelection(position);
@@ -122,7 +118,6 @@ public class EditProfileActivity extends AppCompatActivity {
         if (hardSkills != null && !hardSkills.equals("Not Specified")) etHardSkills.setText(hardSkills);
         if (softSkills != null && !softSkills.equals("Not Specified")) etSoftSkills.setText(softSkills);
 
-        // Setup DatePicker
         etBirthday.setOnClickListener(v -> showDatePickerDialog());
 
         loadExistingProfilePhoto();
@@ -187,7 +182,6 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void showDatePickerDialog() {
-        // Restrict selectable dates: no future dates allowed for a birthday
         CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder()
                 .setValidator(DateValidatorPointBackward.now());
 
@@ -197,9 +191,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 .build();
 
         datePicker.addOnPositiveButtonClickListener(selectionInMillis -> {
-            // MaterialDatePicker returns UTC milliseconds, so we must read it back
-            // using a UTC calendar too, otherwise the date can shift by a day
-            // depending on the device's timezone.
+
             Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
             calendar.setTimeInMillis(selectionInMillis);
 

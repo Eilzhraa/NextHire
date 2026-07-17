@@ -23,7 +23,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
-        <!-- FCM Service -->
         <service
             android:name=".FirebaseMessageReceiver"
             android:exported="false">
@@ -32,8 +31,6 @@
             </intent-filter>
         </service>
 
-        <!-- ✅ LoginActivity is now the launcher. It checks FirebaseAuth.getCurrentUser()
-             on every cold start and redirects straight to MainActivity if already logged in. -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -43,7 +40,6 @@
             </intent-filter>
         </activity>
 
-        <!-- ✅ RegisterActivity is only reached via the "Sign up" link now, not on app launch -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
@@ -72,7 +68,6 @@
             android:name=".MapsActivity"
             android:exported="false" />
 
-        <!-- ✅ Application List Activity -->
         <activity
             android:name=".ApplicationListActivity"
             android:exported="false" />

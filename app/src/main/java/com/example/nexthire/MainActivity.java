@@ -57,9 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationClient;
     private ActivityResultLauncher<String> locationPermissionLauncher;
 
-    // key ("username|jobTitle|companyName") -> Firebase SavedJobs push key.
-    // Kept in sync with the database so every JobAdapter can instantly show
-    // the correct bookmark icon state without a per-row database call.
+
     private HashMap<String, String> savedJobsMap = new HashMap<>();
 
     @Override
@@ -80,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout btnNearMe = findViewById(R.id.btn_near_me);
         btnNearMe.setOnClickListener(v -> checkLocationPermissionAndFindJobs());
 
-        // Stat cards click listeners
         LinearLayout statAppliedLayout = findViewById(R.id.stat_applied_layout);
         LinearLayout statApprovedLayout = findViewById(R.id.stat_approved_layout);
         LinearLayout statRejectedLayout = findViewById(R.id.stat_rejected_layout);
@@ -167,8 +164,6 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-        // Keeps savedJobsMap in sync with Firebase so every job card's bookmark
-        // icon reflects real saved state, and refreshes the adapter when it changes.
         DatabaseReference dbSavedJobs = FirebaseDatabase.getInstance().getReference("SavedJobs");
         dbSavedJobs.addValueEventListener(new ValueEventListener() {
             @Override
@@ -199,9 +194,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        // =========================================================================
-        // DATA JOBS - SEMUA ADA!
-        // =========================================================================
         allJobsList = new ArrayList<>();
         allJobsList.add(new Job(
                 "Data Analyst", "PETRONAS", "RM 4,500 - RM 6,000", "Available",
@@ -312,9 +304,6 @@ public class MainActivity extends AppCompatActivity {
                 "• Digital portfolio required\n• Bachelor's in Media/Comms\n• CapCut/Adobe Premiere skills",
                 "60142939864", "hr@maxis.com.my", "https://www.maxis.com.my", 3.1570, 101.7120));
 
-        // =========================================================================
-        // DASHBOARD DISPLAY JOBS (7 featured jobs)
-        // =========================================================================
         dashboardDisplayList = new ArrayList<>();
         dashboardDisplayList.add(new Job(
                 "Android Developer", "Google Malaysia", "RM 8,500 - RM 12,000", "Available",
@@ -359,11 +348,9 @@ public class MainActivity extends AppCompatActivity {
                 "• Master's/PhD in AI/Data Science\n• Python/PyTorch/TensorFlow\n• CUDA/GPU experience",
                 "60142939864", "hr@aerodyne.group", "https://aerodyne.group", 2.9431, 101.6998));
 
-        // Setup adapter
         adapter = new JobAdapter(this, dashboardDisplayList, incomingName, savedJobsMap);
         jobListView.setAdapter(adapter);
 
-        // Search
         btnSearchClick.setOnClickListener(v -> {
             String keyword = etSearchJob.getText().toString().trim().toLowerCase();
             if (keyword.isEmpty()) {
@@ -390,7 +377,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Bottom navigation
         btnHome.setOnClickListener(v -> {
             etSearchJob.setText("");
             adapter = new JobAdapter(MainActivity.this, dashboardDisplayList, incomingName, savedJobsMap);
@@ -408,7 +394,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // ===== Class-level methods (moved out of onCreate) =====
     private void triggerStatusNotification(String status, String jobTitle) {
         String title;
         String body;

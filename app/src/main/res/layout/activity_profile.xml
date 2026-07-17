@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6FA">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="32dp">
+
+            <!-- ===== HEADER / BANNER ===== -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:background="@drawable/bg_profile_header_gradient" />
+
+                <ImageView
+                    android:id="@+id/btn_back_to_dashboard"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="16dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_arrow_back"
+                    app:tint="@android:color/white"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Back" />
+
+                <Button
+                    android:id="@+id/btn_banner_update"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="12dp"
+                    android:text="Edit banner"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <!-- Profile picture, overlapping the banner bottom edge -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="112dp"
+                    android:layout_height="112dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    app:cardCornerRadius="56dp"
+                    app:cardElevation="6dp"
+                    app:cardUseCompatPadding="false">
+
+                    <ImageView
+                        android:id="@+id/iv_profile_picture"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person_placeholder"
+                        android:contentDescription="Profile photo" />
+
+                </androidx.cardview.widget.CardView>
+
+            </FrameLayout>
+
+            <!-- ===== NAME ===== -->
+            <TextView
+                android:id="@+id/profile_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:text="Loading..."
+                android:textColor="#1A1D29"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- ===== INCOMPLETE PROFILE WARNING ===== -->
+            <LinearLayout
+                android:id="@+id/layout_incomplete_warning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/bg_warning_banner"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_warning"
+                    app:tint="#B45309" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:text="Your profile is incomplete. Complete it to boost your applications."
+                    android:textColor="#92400E"
+                    android:textSize="12.5sp" />
+
+            </LinearLayout>
+
+            <!-- ===== DETAILS CARD ===== -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Personal Details"
+                        android:textColor="#1A1D29"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="10dp" />
+
+                    <LinearLayout style="@style/ProfileFieldRow">
+                        <TextView style="@style/ProfileFieldLabel" android:text="Gender" />
+                        <TextView android:id="@+id/tv_profile_gender" style="@style/ProfileFieldValue" tools:text="Female" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileFieldRow">
+                        <TextView style="@style/ProfileFieldLabel" android:text="Birthday" />
+                        <TextView android:id="@+id/tv_profile_birthday" style="@style/ProfileFieldValue" tools:text="12 Jan 2001" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileFieldRow">
+                        <TextView style="@style/ProfileFieldLabel" android:text="University" />
+                        <TextView android:id="@+id/tv_profile_university" style="@style/ProfileFieldValue" tools:text="UiTM Shah Alam" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileFieldRow">
+                        <TextView style="@style/ProfileFieldLabel" android:text="Education" />
+                        <TextView android:id="@+id/tv_profile_education" style="@style/ProfileFieldValue" tools:text="Diploma" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileFieldRow">
+                        <TextView style="@style/ProfileFieldLabel" android:text="Qualification" />
+                        <TextView android:id="@+id/tv_profile_qualification" style="@style/ProfileFieldValue" tools:text="CS" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileFieldRow">
+                        <TextView style="@style/ProfileFieldLabel" android:text="Experience" />
+                        <TextView android:id="@+id/tv_profile_experience" style="@style/ProfileFieldValue" tools:text="1 year" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileFieldRowLast">
+                        <TextView style="@style/ProfileFieldLabel" android:text="Hard Skills" />
+                        <TextView android:id="@+id/tv_profile_hard_skills" style="@style/ProfileFieldValue" tools:text="Java, Firebase" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileFieldRowLast">
+                        <TextView style="@style/ProfileFieldLabel" android:text="Soft Skills" />
+                        <TextView android:id="@+id/tv_profile_soft_skills" style="@style/ProfileFieldValue" tools:text="Communication" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ===== EDIT PROFILE BUTTON ===== -->
+            <Button
+                android:id="@+id/btn_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="20dp"
+                android:text="Edit Profile"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:backgroundTint="#2F6FED"
+                app:cornerRadius="14dp" />
+
+            <!-- ===== SAVED JOBS SECTION ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginStart="20dp"
+                android:text="Saved Jobs"
+                android:textColor="#1A1D29"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_no_saved_jobs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="20dp"
+                android:gravity="center"
+                android:padding="24dp"
+                android:text="You haven't saved any jobs yet."
+                android:textColor="#9CA3AF"
+                android:visibility="gone" />
+
+            <com.example.nexthire.NonScrollListView
+                android:id="@+id/saved_jobs_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+
+            <!-- ===== SIGN OUT ===== -->
+            <Button
+                android:id="@+id/btn_sign_out"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="20dp"
+                android:text="Sign Out"
+                android:textAllCaps="false"
+                android:textColor="#DC2626"
+                app:strokeColor="#DC2626" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

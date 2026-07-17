@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "457606199540",
+    "project_id": "nexthireee",
+    "storage_bucket": "nexthireee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457606199540:android:a15d68fe6dd7e0358346a1",
+        "android_client_info": {
+          "package_name": "com.example.nexthire"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUtIGn1sDlyUL8MZptMVwMUPtycVPwotA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457606199540:android:139b3c9aeb366b958346a1",
+        "android_client_info": {
+          "package_name": "com.example.nexthireapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUtIGn1sDlyUL8MZptMVwMUPtycVPwotA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
